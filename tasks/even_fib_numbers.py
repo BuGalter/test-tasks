@@ -20,6 +20,8 @@ even_fib_numbers()
     числа фибаначчи в интервале от 0 до переданного номера числа
 """
 
+import doctest
+
 
 def even_fib_numbers(number: int = 0) -> list:
     """Ищет положительные числа в заданном интервале
@@ -31,6 +33,33 @@ def even_fib_numbers(number: int = 0) -> list:
     ----------
     even number : int, positive
         порядковый номер последнего числа интервала
+
+    Tests
+    -----
+    >>> even_fib_numbers(0)
+    [0]
+    >>> even_fib_numbers(1)
+    [0]
+    >>> even_fib_numbers(23.5)
+    ['An integer must be passed!']
+    >>> even_fib_numbers('dhkhjfshd')
+    ['An integer must be passed!']
+    >>> even_fib_numbers(-56)
+    ['The number must be positive!']
+    >>> even_fib_numbers(4)
+    [0, 2]
+    >>> even_fib_numbers(8)
+    [0, 2, 8]
+    >>> even_fib_numbers(11)
+    [0, 2, 8, 34]
+    >>> even_fib_numbers(14)
+    [0, 2, 8, 34, 144]
+    >>> even_fib_numbers(16)
+    [0, 2, 8, 34, 144, 610]
+    >>> even_fib_numbers(19)
+    [0, 2, 8, 34, 144, 610, 2584]
+    >>> even_fib_numbers(22)
+    [0, 2, 8, 34, 144, 610, 2584, 10946]
     """
 
     even_elements = []
@@ -55,3 +84,7 @@ def even_fib_numbers(number: int = 0) -> list:
         if (fib2 % 2) == 0:
             even_elements.append(fib2)
     return even_elements
+
+
+if __name__ == '__main__':
+    doctest.testmod()
