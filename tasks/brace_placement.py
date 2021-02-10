@@ -32,4 +32,4 @@ Methods
 
 
 def get_brace_placement(string_to_check: str = '') -> bool:
-	pass
+    pass
