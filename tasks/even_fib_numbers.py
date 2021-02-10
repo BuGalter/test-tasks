@@ -36,6 +36,9 @@ def even_fib_numbers(number: int = 0) -> list:
     """
 
     even_element = []
+    if type(number) is not int:
+        even_element.append('An integer must be passed!')
+        return even_element
     if number == 0:
         even_element.append(0)
         return even_element
