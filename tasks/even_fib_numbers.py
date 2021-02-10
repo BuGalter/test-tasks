@@ -20,7 +20,7 @@ even_fib_numbers()
 """
 
 
-def even_fib_numbers(number):
+def even_fib_numbers(number: int = 0) -> list:
     """Ищет положительные числа в заданном интервале
 
     Если аргумент split_symbol не задан, в качестве разделителя
@@ -30,6 +30,9 @@ def even_fib_numbers(number):
     ----------
     split_symbol : str, optional
         разделитель
+
+        Учесть отрицательные числа
+        Учесть что тип инт
     """
 
     even_element = []
