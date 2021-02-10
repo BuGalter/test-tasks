@@ -33,6 +33,12 @@ Methods
 
 """
 
+import doctest
+
 
 def get_brace_placement(string_to_check: str = '') -> bool:
     pass
+
+
+if __name__ == '__main__':
+    doctest.testmod()
