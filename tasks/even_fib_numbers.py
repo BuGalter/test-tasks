@@ -39,10 +39,6 @@ def even_fib_numbers(number: int = 0) -> list:
 
     Tests
     -----
-    >>> even_fib_numbers(0)
-    [0]
-    >>> even_fib_numbers(1)
-    [0]
     >>> even_fib_numbers(23.5)
     ['An integer must be passed!']
     >>> even_fib_numbers('dhkhjfshd')
@@ -51,6 +47,14 @@ def even_fib_numbers(number: int = 0) -> list:
     ['An integer must be passed!']
     >>> even_fib_numbers(-56)
     ['The number must be positive!']
+    >>> even_fib_numbers(0)
+    [0]
+    >>> even_fib_numbers(1)
+    [0]
+    >>> even_fib_numbers(2)
+    [0]
+    >>> even_fib_numbers(3)
+    [0]
     >>> even_fib_numbers(4)
     [0, 2]
     >>> even_fib_numbers(8)
