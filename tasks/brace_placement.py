@@ -50,22 +50,49 @@ Tests
 -----
 >>> get_brace_placement('')
 True
+>>> get_brace_placement('{')
+False
+>>> get_brace_placement('{jhk}{}')
+True
+>>> get_brace_placement('}')
+False
+>>> get_brace_placement('{{jhklh')
+False
+>>> get_brace_placement('{{{{{}}}}')
+False
+>>> get_brace_placement('{{{{{')
+False
 """
 
 import doctest
 
 
-def get_brace_placement(string_to_check: str = '') -> bool:
+def chek_brace_placement(string_to_check: str = '') -> bool:
     flag = True
     stack = []
-    pointer_vertex_stack = len(stack) - 1
-    depth_stack = len(stack)
     if type(string_to_check) is not str:
         print('String expression expected!')
         flag = False
         return flag
     if len(string_to_check) == 0:
         return flag
+    for symbol in string_to_check:
+        if symbol == '}' and len(stack) == 0:
+            flag = False
+            return flag
+        elif symbol == '}' and stack[len(stack) - 1] != '{':
+            flag = False
+            return flag
+        elif symbol == '}' and stack.pop() == '{':
+            flag = True
+            continue
+        elif symbol == '{':
+            stack.append(symbol)
+            flag = False
+            continue
+    if flag and len(stack) > 0:
+        return False
+    return flag
 
 
 if __name__ == '__main__':
