@@ -13,8 +13,10 @@ The package is conceived as a collection of test problems that I come across.
 * **Модуль even_fib_numbers - используется для поиска положительных чисел
 Фибаначчи до переданного порядкового номера числа** 
 https://github.com/BuGalter/test-tasks/blob/master/tasks/even_fib_numbers.py
+
 *Status* - **Done**
 
 * **Модуль brace_placement - используется для проверки валидности расстановки скобок в выражении**
 https://github.com/BuGalter/test-tasks/blob/master/tasks/brace_placement.py
+
 *Status* - **In developing**
