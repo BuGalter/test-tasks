@@ -51,45 +51,72 @@ Methods
 chek_brace_placement()
     принимает на вход строковое выражение и проверяет валидность
     расстановки скобок в нем
-
-Tests
------
->>> chek_brace_placement('([])')
-True
->>> chek_brace_placement('{[(]}')
-False
->>> chek_brace_placement('')
-True
->>> chek_brace_placement('{')
-False
->>> chek_brace_placement('(')
-False
->>> chek_brace_placement('{jhk}()')
-True
->>> chek_brace_placement('}')
-False
->>> chek_brace_placement(']')
-False
->>> chek_brace_placement('{{jh[[klh')
-False
->>> chek_brace_placement('{{{{{}}}})')
-False
->>> chek_brace_placement('{{{{{))]]')
-False
->>> chek_brace_placement('()[()]{()()[]}')
-True
->>> chek_brace_placement('[(]{})')
-False
->>> chek_brace_placement('[{([[[]]])()(){}}]')
-True
->>> chek_brace_placement('{[[[[((()))(])]]]}')
-False
 """
 
 import doctest
 
 
 def chek_brace_placement(string_to_check: str = '') -> bool:
+    """Проверяет валидность расстановки скобок в переданой строке
+
+    Если значение string_to_check не заданно, то значение по умолчанию
+    пустая строка. Так же при проверке типа, возвращает сообщение и False.
+    При добавление скобок надо учитывать, что индекс окрывающей и закрывающей
+    скобки должен быть одинаковым.
+
+    Parameters
+    ----------
+    string_to_check : str
+        строка для проверки
+    stack : list
+        массив, который используется в качестве стэка
+    open_brackets : list
+        массив для хранения открывающихся скобок
+    close_brackets : list
+        массив для хранения закрывающихся скобок
+
+    Tests
+    -----
+    >>> chek_brace_placement()
+    True
+    >>> chek_brace_placement('')
+    True
+    >>> chek_brace_placement(24)
+    String expression expected!
+    False
+    >>> chek_brace_placement(None)
+    String expression expected!
+    False
+    >>> chek_brace_placement('([])')
+    True
+    >>> chek_brace_placement('{[(]}')
+    False
+    >>> chek_brace_placement('{')
+    False
+    >>> chek_brace_placement('(')
+    False
+    >>> chek_brace_placement('{jhk}()')
+    True
+    >>> chek_brace_placement('}')
+    False
+    >>> chek_brace_placement(']')
+    False
+    >>> chek_brace_placement('{{jh[[klh')
+    False
+    >>> chek_brace_placement('{{{{{}}}})')
+    False
+    >>> chek_brace_placement('{{{{{))]]')
+    False
+    >>> chek_brace_placement('()[()]{()()[]}')
+    True
+    >>> chek_brace_placement('[(]{})')
+    False
+    >>> chek_brace_placement('[{([[[]]])()(){}}]')
+    True
+    >>> chek_brace_placement('{[[[[((()))(])]]]}')
+    False
+    """
+
     stack = []
     open_brackets = ['(', '{', '[']
     close_brackets = [')', '}', ']']
@@ -103,14 +130,22 @@ def chek_brace_placement(string_to_check: str = '') -> bool:
             stack.append(symbol)
             continue
         if symbol in close_brackets:
+            """Если встретили скобку закрывающую, а стэк пуст
+            возвращаем False
+            """
             if len(stack) == 0:
                 return False
+            """Получаем по индексу закрывающей скобки, открывающую скобку"""
             index = close_brackets.index(symbol)
             bracket_open = open_brackets[index]
+            """Если не соответствует той, что на вершине стэка
+            возвращаем False, иначе удаляем ее с вершины, продолжаем проверку
+            """
             if stack[-1] == bracket_open:
                 stack.pop()
             else:
                 return False
+    """Если проверили строку, а стэк не пуст, возвращаем False"""
     if len(stack) > 0:
         return False
     return True
