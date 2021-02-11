@@ -19,4 +19,4 @@ https://github.com/BuGalter/test-tasks/blob/master/tasks/even_fib_numbers.py
 * **Модуль brace_placement - используется для проверки валидности расстановки скобок в выражении**
 https://github.com/BuGalter/test-tasks/blob/master/tasks/brace_placement.py
 
-*Status* - **In developing**
+*Status* - **Done**
