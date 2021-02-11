@@ -46,13 +46,26 @@ Attributes
 Methods
 -------
 
+Tests
+-----
+>>> get_brace_placement('')
+True
 """
 
 import doctest
 
 
 def get_brace_placement(string_to_check: str = '') -> bool:
-    pass
+    flag = True
+    stack = []
+    pointer_vertex_stack = len(stack) - 1
+    depth_stack = len(stack)
+    if type(string_to_check) is not str:
+        print('String expression expected!')
+        flag = False
+        return flag
+    if len(string_to_check) == 0:
+        return flag
 
 
 if __name__ == '__main__':
