@@ -48,19 +48,35 @@ Methods
 
 Tests
 -----
->>> get_brace_placement('')
+>>> chek_brace_placement('([])')
 True
->>> get_brace_placement('{')
+>>> chek_brace_placement('{[(]}')
 False
->>> get_brace_placement('{jhk}{}')
+>>> chek_brace_placement('')
 True
->>> get_brace_placement('}')
+>>> chek_brace_placement('{')
 False
->>> get_brace_placement('{{jhklh')
+>>> chek_brace_placement('(')
 False
->>> get_brace_placement('{{{{{}}}}')
+>>> chek_brace_placement('{jhk}()')
+True
+>>> chek_brace_placement('}')
 False
->>> get_brace_placement('{{{{{')
+>>> chek_brace_placement(']')
+False
+>>> chek_brace_placement('{{jh[[klh')
+False
+>>> chek_brace_placement('{{{{{}}}})')
+False
+>>> chek_brace_placement('{{{{{))]]')
+False
+>>> chek_brace_placement('()[()]{()()[]}')
+True
+>>> chek_brace_placement('[(]{})')
+False
+>>> chek_brace_placement('[{([[[]]])()(){}}]')
+True
+>>> chek_brace_placement('{[[[[((()))(])]]]}')
 False
 """
 
@@ -68,31 +84,30 @@ import doctest
 
 
 def chek_brace_placement(string_to_check: str = '') -> bool:
-    flag = True
     stack = []
+    open_brackets = ['(', '{', '[']
+    close_brackets = [')', '}', ']']
     if type(string_to_check) is not str:
         print('String expression expected!')
-        flag = False
-        return flag
-    if len(string_to_check) == 0:
-        return flag
-    for symbol in string_to_check:
-        if symbol == '}' and len(stack) == 0:
-            flag = False
-            return flag
-        elif symbol == '}' and stack[len(stack) - 1] != '{':
-            flag = False
-            return flag
-        elif symbol == '}' and stack.pop() == '{':
-            flag = True
-            continue
-        elif symbol == '{':
-            stack.append(symbol)
-            flag = False
-            continue
-    if flag and len(stack) > 0:
         return False
-    return flag
+    if len(string_to_check) == 0:
+        return True
+    for symbol in string_to_check:
+        if symbol in open_brackets:
+            stack.append(symbol)
+            continue
+        if symbol in close_brackets:
+            if len(stack) == 0:
+                return False
+            index = close_brackets.index(symbol)
+            bracket_open = open_brackets[index]
+            if stack[-1] == bracket_open:
+                stack.pop()
+            else:
+                return False
+    if len(stack) > 0:
+        return False
+    return True
 
 
 if __name__ == '__main__':
