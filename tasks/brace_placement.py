@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # Copyright [2021] [Valeriy Yukubchik]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
 # limitations under the License.
 
 """Модуль brace_placement используется для проверки валидности
-расстановки скобок в строковом выражении
+расстановки скобок в строковом выражении.
 
 Основное применение - проверка валидности расстановки скобок в строковом
 выражении
@@ -51,6 +51,7 @@ Methods
 chek_brace_placement()
     принимает на вход строковое выражение и проверяет валидность
     расстановки скобок в нем
+
 """
 
 import doctest
